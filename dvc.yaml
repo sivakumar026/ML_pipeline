@@ -8,6 +8,7 @@ stages:
   pre_processing:
     cmd: python src/data_prep.py
     deps:
+    - data/raw  # <--- Added this to link to data_collection
     - src/data_prep.py
     outs:
     - data/processed
@@ -18,3 +19,10 @@ stages:
     - src/model_building.py
     outs:
     - model.pkl
+  model_eval:
+    cmd: python src/model_eval.py
+    deps:
+    - model.pkl
+    - src/model_eval.py
+    metrics:
+    - metrics.json
