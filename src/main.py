@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 import pickle
 import pandas as pd
-from data_model import Water
+from src.data_model import Water
 
 app=FastAPI()
 
-with open("d:\ML_pipeline\model.pkl","rb") as f:
+with open("model.pkl","rb") as f:
     model=pickle.load(f)
 
 @app.get("/")
