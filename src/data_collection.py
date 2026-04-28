@@ -1,12 +1,15 @@
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
+import yaml
 
 data = pd.read_csv("data_sets/water_potability.csv")
 
+test_size=yaml.safe_load(open("params.yaml"))["data_collection"]["test_size"]
+
 train_data, test_data = train_test_split(
     data,
-    test_size=0.20,
+    test_size=test_size,
     random_state=42
 )
 
